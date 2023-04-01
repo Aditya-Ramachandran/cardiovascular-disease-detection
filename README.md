@@ -11,8 +11,7 @@ with the goal of reducing the incidence of CVD and its associated complications.
 
 ## Methodology 
 ### Dataset
-This project uses the Cardiovascular Disease dataset from Kaggle 
-(https://www.kaggle.com/datasets/sulianova/cardiovascular) which contains 13 attributes and samples.
+This project uses the Cardiovascular Disease dataset from [Kaggle](https://www.kaggle.com/datasets/sulianova/cardiovascular-disease-dataset) which contains 13 attributes and samples.
 
 ### Classification Models
 To improve the accuracy of cardiovascular disease diagnosis, we will propose an ensemble model based on machine learning algorithms, including XGBoost, K Nearest Neighbours, and Decision Trees, as well as a stacked model that combines an ML ensemble model with a Random Forest.We will utilize four machine learning techniques, namely Random Forest, KNN, Decision Trees, and XGBoost, in our project.
