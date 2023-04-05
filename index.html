@@ -44,7 +44,7 @@
         </li>
     </ul>
 
-    <h2>Motivation</h2>
+    <!-- <h2>Motivation</h2>
     <ul>
         <li>
             This project is of paramount importance given the surging incidence of 
@@ -74,10 +74,131 @@
             anticipate the opportunities it provides for us to make a meaningful impact on 
             people's lives through data-driven healthcare solutions.
         </li>
-    </ul>
+    </ul> -->
 
-    
+    <h2>Methodology</h2>
+    <ol>
+        <li>
+             <h3>Approach</h3>
+             <p>
+                The proposed method for predicting cardiovascular disease involves six phases, 
+                starting with the selection of a dataset, specifically the cardiovascular disease 
+                dataset for this study. Pre-processing of the data involves several necessary 
+                steps before training the model. Feature extraction is then performed to assess 
+                the significance of the features. To detect cardiovascular disease, the study 
+                employs four machine learning classifiers: Random Forest (RF), K-Nearest 
+                Neighbours (KNN), Decision Tree (DT), and Extreme Gradient Boosting (XGB).
+             </p>
+        </li>
 
+        <li>
+            <h3>Dataset Selection</h3>
+            <p>
+                This study uses the Cardiovascular Disease dataset from Kaggle 
+                (https://www.kaggle.com/datasets/sulianova/cardiovascular-disease-dataset), 
+                which contains 13 attributes and samples. The dataset is divided into two parts: 
+                one part is used for training models, while the other part is used to evaluate the 
+                model's performance
+            </p>
+        </li>
+        <li>
+            <h3> Data Pre-processing </h3>
+            <p>
+                Before training a machine learning model, the data needs to be pre-processed 
+                to ensure its quality and that important information is available to the model. 
+                This involves dealing with different characteristics of the dataset, such as 
+                missing values, outliers, and scaling. One way to pre-process the data is to 
+                eliminate outliers and normalize the data using a standard scaler, which adjusts 
+                the distribution of the data to have a mean of 0 and a standard deviation of 1. 
+                The target labels are also transformed into numeric forms using a Label Encoder 
+                so that the machine can read them and make better predictions for disease 
+                diagnosis
+            </p>
+        </li>
+        <li>
+            <h3>Feature Extraction</h3>
+            <p>
+                Feature selection is a crucial step in machine learning that helps to reduce the 
+                dimensionality of the dataset and identify the most important features for 
+                classification. The aim is to choose informative features that can enhance the 
+                model's performance. Random Forest (RF) feature selection approach is 
+                effective in identifying the essential features for classification. This method is 
+                widely used in machine learning and has been successful in real-world scenarios.
+            </p>
+        </li>
+        <li>
+            <h3>Classification Models</h3>
+            <p>
+                To improve the accuracy of cardiovascular disease diagnosis, we will propose an 
+                ensemble model based on machine learning algorithms, including XGBoost, KNearest Neighbours, and Decision Trees, as well as a stacked model that 
+                combines an ML ensemble model with a Random Forest. We will utilize four 
+                machine learning techniques, namely Random Forest, K-Nearest Neighbours, 
+                Decision Trees, and XGBoost, in our experiment.
+            </p>
+        </li>
+        <li>
+            <h3> Ensemble classifier for machine learning models</h3>
+            <p>
+                Ensemble learning has been widely used by researchers to tackle various 
+                machine learning challenges. Due to the diversity of datasets, an ensemble 
+                learning approach is adopted to distinguish between different diseases and 
+                accurately categorize data. When a new data point arrives, each classifier in the 
+                ensemble predicts a class label. The predicted label that receives the majority of 
+                votes from the classifiers is considered for that instance. In order to enhance 
+                performance, a combination of ML-classifiers and various voting methods are 
+                employed, which have shown to outperform the traditional single-learning 
+                approach and lead to better generalization results. These strategies can 
+                effectively improve the accuracy of the ensemble model and make it more 
+                robust.
+            </p>
+            <ol>
+                <li>
+                    <h4>K-Nearest Neighbour (KNN):</h4>
+                    <p>
+                        K-Nearest Neighbour (KNN) is a prominent approach in machine learning used 
+                        for regression and classification tasks. It employs similarity measurements, such 
+                        as the distance function, to describe new points in the data. The algorithm 
+                        depends on the similarity of the items being compared, and classification is 
+                        performed based on the majority vote of its nearest neighbours. The accuracy 
+                        can improve as the number of nearest neighbours increases, and we used the 
+                        default parameter settings provided by the sklearn library.
+                    </p>
+                </li>
+                
+                <li>
+                    <h4>Extreme Gradient Boosting (XGBoost):</h4>
+                    <p>
+                        Extreme Gradient Boosting (XGBoost) is another ensemble learning approach 
+                        that enhances classification performance and memory resource utilization. It 
+                        utilizes a gradient descent technique to optimize the loss function and returns a 
+                        prediction as a boosting ensemble of weak classification trees. XGBoost 
+                        algorithm stands out for its ability to combine weak ML algorithms with an 
+                        adaptive learning method. One of the unique features of XGBoost is that it uses 
+                        residual error to adjust the previous prediction to optimize the loss function. The 
+                        loss function in XGBoost is regularized to provide an objective function for 
+                        assessing the model's performance.
+                    </p>
+                </li>
+
+                <li>
+                    <h4>Decision Tree:</h4>
+                    <p>
+                        Decision Tree is a versatile machine learning technique that can handle both 
+                        categorical and numerical data. It has a tree-like structure that makes it easy to 
+                        understand and interpret. In the medical field, Decision Tree is a widely used 
+                        method due to its simplicity and effectiveness. Creating and analysing a treeshaped graph to visualize decision-making is straightforward. Therefore, we 
+                        have chosen the Decision Tree classification method as one of the most effective 
+                        and extensively utilized approaches for supervised learning. It is easy to build a 
+                        robust decision tree model for a specific dataset and can be trained using default 
+                        parameters
+                    </p>
+                </li>
+            </ol>
+        </li>
+    </ol>
+
+    <h2>Flow Diagram</h2>
+    <img src="images/Untitled Diagram.drawio.png">
    </p>
 </body>
 </html>
