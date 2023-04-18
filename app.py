@@ -2,6 +2,7 @@ import streamlit as st
 
 # st.title('Cardiovascular Disease Detection Using Python !')
 # st.subheader('Major Project')
+st.set_page_config(page_title="Cardiovascular Disease Detection in Python")
 
 
 # functions for 'option'
