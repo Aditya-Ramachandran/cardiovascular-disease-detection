@@ -4,6 +4,8 @@ import streamlit as st
 # st.subheader('Major Project')
 st.set_page_config(page_title="Cardiovascular Disease Detection in Python")
 
+#########################################################################################################
+
 
 # functions for 'option'
 def load_about():
@@ -59,7 +61,19 @@ def load_about():
     # st.markdown('Check <a href="https://aditya-ramachandran.github.io/cardiovascular-disease-detection/">this</a> GitHub Repository for development updates.')
 
     st.markdown('Check [this](https://github.com/Aditya-Ramachandran/cardiovascular-disease-detection) GitHub repository for updates')
-    
+
+
+######################################################################################################### 
+
+
+# function for model_option
+def NeuralNetwork():
+    st.write('NN')
+
+
+def EnsembleModels():
+    st.write('Ensemble Models')
+
 
 
 st.sidebar.header('Cardiovascular Disease Detection Using Python')
@@ -68,6 +82,12 @@ option = st.sidebar.radio('Choose', ['About', 'Try the model'])
 if option == 'Try the model':
     st.title('This is a Work In Progress')
     st.markdown('Check [this](https://github.com/Aditya-Ramachandran/cardiovascular-disease-detection) GitHub repository for updates')
+    model_option = st.selectbox('Choose Model', ['Ensemble Models', 'Neural Network'])
+    if model_option == 'Neural Network':
+        NeuralNetwork()
+    if model_option == 'Ensemble Models':
+        EnsembleModels()
+        
 
 if option == 'About':
     load_about()
