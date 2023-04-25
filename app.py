@@ -1,8 +1,29 @@
 import streamlit as st
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 # st.title('Cardiovascular Disease Detection Using Python !')
 # st.subheader('Major Project')
 st.set_page_config(page_title="Cardiovascular Disease Detection in Python")
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
+
+df = pd.read_csv('Dataset/cardio_train_cleaned_1.csv')
+
+#########################################################################################################
+
+def custom_scatter(x,y, xx, yy, label1, label2):
+#     xx = random.sample(range(0, 100), 50)
+#     yy = random.sample(range(0, 100), 50)
+    plt.scatter(xx, yy, alpha=0.1, color='orange')
+    plt.scatter(x,y, color='red', marker='x', alpha=1)
+    plt.text(x+0.5,y+0.5,'You are here', fontsize='large', stretch='semi-expanded')
+    plt.xlabel('Age')
+    plt.ylabel('Weight (in kg.)')
+    plt.axhline(df[label2].mean(), linestyle='dotted', alpha=0.5)
+#     plt.text(df['age'].mean()+5,df['weight'].mean()+5,'Average',rotation=90, alpha=0.5)
+    plt.axvline(df[label1].mean(), linestyle='dotted', alpha=0.5)
 
 #########################################################################################################
 
@@ -69,7 +90,9 @@ def load_about():
 # function for model_option
 def NeuralNetwork():
     st.write('NN')
-
+    height = st.number_input('Enter Height')
+    weight = st.number_input('Enter Weight')
+    st.pyplot(custom_scatter(height, weight, df['height'], df['weight'], 'height', 'weight'))
 
 def EnsembleModels():
     st.write('Ensemble Models')
