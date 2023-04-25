@@ -11,8 +11,9 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 df = pd.read_csv('Dataset/cardio_train_cleaned_1.csv')
 
-#########################################################################################################
+########################################################################################################
 
+# function for custom scatter plots
 def custom_scatter(x,y, xx, yy, label1, label2, x_axis,y_axis):
 #     xx = random.sample(range(0, 100), 50)
 #     yy = random.sample(range(0, 100), 50)
@@ -104,7 +105,7 @@ if option == 'Try the model':
     st.title('This is a Work In Progress')
     st.markdown('Check [this](https://github.com/Aditya-Ramachandran/cardiovascular-disease-detection) GitHub repository for updates')
     model_option = st.sidebar.selectbox('Choose Model', ['Ensemble Models', 'Neural Network'], key='model')
-    st.session_state
+    # st.session_state
     if st.session_state['model'] == 'Neural Network':
         NeuralNetwork()
     if st.session_state['model'] == 'Ensemble Models':
@@ -120,8 +121,8 @@ if option == 'Try the visualizations':
         st.markdown("<hr>", unsafe_allow_html=True)
 
         # https://youtu.be/92jUAXBmZyU -> Session State tut
-        option_plot = st.sidebar.selectbox('Choose Visualization', ['Height vs Weight', 'Systolic BP vs Diastolic BP'],key="counter")
-        st.session_state
+        option_plot = st.sidebar.selectbox('Choose Visualization', ['Height vs Weight', 'Systolic BP vs Diastolic BP', 'Age vs Height'],key="counter")
+        # st.session_state
         if st.session_state['counter'] == 'Height vs Weight':
             st.subheader('Height vs Weight')
             height = st.number_input('Enter Height (in cm)')
@@ -133,6 +134,7 @@ if option == 'Try the visualizations':
             ap_hi = st.number_input('Enter Systolic BP')
             ap_lo = st.number_input('Enter Diastolic BP')
             st.pyplot(custom_scatter(ap_hi, ap_lo, df['ap_hi'], df['ap_lo'], 'ap_hi', 'ap_lo', 'Systolic blood pressure', 'Diastolic blood pressure'))
+        
 
 if option == 'About':
     load_about()
