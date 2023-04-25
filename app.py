@@ -103,10 +103,11 @@ option = st.sidebar.radio('Choose', ['About', 'Try the model', 'Try the visualiz
 if option == 'Try the model':
     st.title('This is a Work In Progress')
     st.markdown('Check [this](https://github.com/Aditya-Ramachandran/cardiovascular-disease-detection) GitHub repository for updates')
-    model_option = st.selectbox('Choose Model', ['Ensemble Models', 'Neural Network'])
-    if model_option == 'Neural Network':
+    model_option = st.sidebar.selectbox('Choose Model', ['Ensemble Models', 'Neural Network'], key='model')
+    st.session_state
+    if st.session_state['model'] == 'Neural Network':
         NeuralNetwork()
-    if model_option == 'Ensemble Models':
+    if st.session_state['model'] == 'Ensemble Models':
         EnsembleModels()
 
 if option == 'Try the visualizations':
@@ -119,7 +120,7 @@ if option == 'Try the visualizations':
         st.markdown("<hr>", unsafe_allow_html=True)
 
         # https://youtu.be/92jUAXBmZyU -> Session State tut
-        option_plot = st.sidebar.selectbox('Choose one', ['Height vs Weight', 'Systolic BP vs Diastolic BP'],key="counter")
+        option_plot = st.sidebar.selectbox('Choose Visualization', ['Height vs Weight', 'Systolic BP vs Diastolic BP'],key="counter")
         st.session_state
         if st.session_state['counter'] == 'Height vs Weight':
             st.subheader('Height vs Weight')
