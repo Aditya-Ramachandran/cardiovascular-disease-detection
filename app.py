@@ -13,14 +13,15 @@ df = pd.read_csv('Dataset/cardio_train_cleaned_1.csv')
 
 #########################################################################################################
 
-def custom_scatter(x,y, xx, yy, label1, label2):
+def custom_scatter(x,y, xx, yy, label1, label2, x_axis,y_axis):
 #     xx = random.sample(range(0, 100), 50)
 #     yy = random.sample(range(0, 100), 50)
     plt.scatter(xx, yy, alpha=0.1, color='orange')
-    plt.scatter(x,y, color='red', marker='x', alpha=1)
+    plt.scatter(x,y, color='red', marker='x', alpha=1, label='You')
     plt.text(x+0.5,y+0.5,'You are here', fontsize='large', stretch='semi-expanded')
-    plt.xlabel('Age')
-    plt.ylabel('Weight (in kg.)')
+    plt.xlabel(x_axis)
+    plt.ylabel(y_axis)
+    plt.legend()
     plt.axhline(df[label2].mean(), linestyle='dotted', alpha=0.5)
 #     plt.text(df['age'].mean()+5,df['weight'].mean()+5,'Average',rotation=90, alpha=0.5)
     plt.axvline(df[label1].mean(), linestyle='dotted', alpha=0.5)
@@ -90,9 +91,6 @@ def load_about():
 # function for model_option
 def NeuralNetwork():
     st.write('NN')
-    height = st.number_input('Enter Height')
-    weight = st.number_input('Enter Weight')
-    st.pyplot(custom_scatter(height, weight, df['height'], df['weight'], 'height', 'weight'))
 
 def EnsembleModels():
     st.write('Ensemble Models')
@@ -100,7 +98,7 @@ def EnsembleModels():
 
 
 st.sidebar.header('Cardiovascular Disease Detection Using Python')
-option = st.sidebar.radio('Choose', ['About', 'Try the model'])
+option = st.sidebar.radio('Choose', ['About', 'Try the model', 'Try the visualizations'])
 
 if option == 'Try the model':
     st.title('This is a Work In Progress')
@@ -110,7 +108,30 @@ if option == 'Try the model':
         NeuralNetwork()
     if model_option == 'Ensemble Models':
         EnsembleModels()
+
+if option == 'Try the visualizations':
         
+        st.title('Visualizations')
+        st.subheader('How to use')
+        st.write('* Select the type of visualization from the sidebar')
+        st.write('* Enter the values in the given input area (Press Enter to save)')
+        
+        st.markdown("<hr>", unsafe_allow_html=True)
+
+        # https://youtu.be/92jUAXBmZyU -> Session State tut
+        option_plot = st.sidebar.selectbox('Choose one', ['Height vs Weight', 'Systolic BP vs Diastolic BP'],key="counter")
+        st.session_state
+        if st.session_state['counter'] == 'Height vs Weight':
+            st.subheader('Height vs Weight')
+            height = st.number_input('Enter Height (in cm)')
+            weight = st.number_input('Enter Weight (in kg)')
+            st.pyplot(custom_scatter(height, weight, df['height'], df['weight'], 'height', 'weight', 'Height (cms)', 'Weight (kg)'))
+        
+        if st.session_state['counter'] == 'Systolic BP vs Diastolic BP':
+            st.subheader('Systolic BP vs Diastolic BP')
+            ap_hi = st.number_input('Enter Systolic BP')
+            ap_lo = st.number_input('Enter Diastolic BP')
+            st.pyplot(custom_scatter(ap_hi, ap_lo, df['ap_hi'], df['ap_lo'], 'ap_hi', 'ap_lo', 'Systolic blood pressure', 'Diastolic blood pressure'))
 
 if option == 'About':
     load_about()
