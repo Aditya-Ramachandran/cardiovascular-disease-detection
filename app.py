@@ -135,6 +135,11 @@ if option == 'Try the visualizations':
             ap_lo = st.number_input('Enter Diastolic BP')
             st.pyplot(custom_scatter(ap_hi, ap_lo, df['ap_hi'], df['ap_lo'], 'ap_hi', 'ap_lo', 'Systolic blood pressure', 'Diastolic blood pressure'))
         
+        if st.session_state['counter'] == 'Age vs Height':
+            st.subheader('Age vs Height')
+            age = st.number_input('Enter your age')
+            height = st.number_input('Enter your height')
+            st.pyplot(custom_scatter(age, height, df['age'], df['height'], 'age', 'height', 'Age (years)', 'Height (cm)'))
 
 if option == 'About':
     load_about()
