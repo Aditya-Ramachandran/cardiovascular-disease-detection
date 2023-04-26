@@ -27,6 +27,15 @@ def custom_scatter(x,y, xx, yy, label1, label2, x_axis,y_axis):
 #     plt.text(df['age'].mean()+5,df['weight'].mean()+5,'Average',rotation=90, alpha=0.5)
     plt.axvline(df[label1].mean(), linestyle='dotted', alpha=0.5)
 
+
+    # # with open("flower.png", "rb") as file:
+    # btn = st.download_button(
+    #         label="Download image",
+    #         data=file,
+    #         file_name="flower.png",
+    #         mime="image/png"
+    #     )
+
 #########################################################################################################
 
 
@@ -121,7 +130,7 @@ if option == 'Try the visualizations':
         st.markdown("<hr>", unsafe_allow_html=True)
 
         # https://youtu.be/92jUAXBmZyU -> Session State tut
-        option_plot = st.sidebar.selectbox('Choose Visualization', ['Height vs Weight', 'Systolic BP vs Diastolic BP', 'Age vs Height'],key="counter")
+        option_plot = st.sidebar.selectbox('Choose Visualization', ['Height vs Weight', 'Systolic BP vs Diastolic BP', 'Height vs systolic BP', 'Height vs diastolic BP', 'Weight vs systolic BP', 'Weight vs diastolic BP'],key="counter")
         # st.session_state
         if st.session_state['counter'] == 'Height vs Weight':
             st.subheader('Height vs Weight')
@@ -135,11 +144,13 @@ if option == 'Try the visualizations':
             ap_lo = st.number_input('Enter Diastolic BP')
             st.pyplot(custom_scatter(ap_hi, ap_lo, df['ap_hi'], df['ap_lo'], 'ap_hi', 'ap_lo', 'Systolic blood pressure', 'Diastolic blood pressure'))
         
-        if st.session_state['counter'] == 'Age vs Height':
-            st.subheader('Age vs Height')
-            age = st.number_input('Enter your age')
-            height = st.number_input('Enter your height')
-            st.pyplot(custom_scatter(age, height, df['age'], df['height'], 'age', 'height', 'Age (years)', 'Height (cm)'))
+        # if st.session_state['counter'] == 'Age vs Height':
+        #     st.subheader('Age vs Height')
+        #     age = st.number_input('Enter your age')
+        #     height = st.number_input('Enter your height')
+        #     st.pyplot(custom_scatter(age, height, df['age'], df['height'], 'age', 'height', 'Age (years)', 'Height (cm)'))
+
+        
 
 if option == 'About':
     load_about()
