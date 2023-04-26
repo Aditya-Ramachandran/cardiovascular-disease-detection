@@ -5,9 +5,10 @@ import matplotlib.pyplot as plt
 from about import About
 from explore import Explore
 
+st.set_page_config(page_title="Cardiovascular Disease Detection in Python")
 # st.title('Cardiovascular Disease Detection Using Python !')
 # st.subheader('Major Project')
-st.set_page_config(page_title="Cardiovascular Disease Detection in Python")
+
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 
@@ -123,6 +124,11 @@ if option == 'Try the visualizations':
 if option == 'About':
     About.load_about()
 
+explore_obj = Explore()
 
 if option == 'Explore the dataset':
-    Explore.filter()
+    explore_option = st.sidebar.selectbox('Choose', ['Filtering', 'Sorting'], key='explore')
+    if st.session_state['explore'] == 'Filtering':
+        explore_obj.filter()
+    if st.session_state['explore'] == 'Sorting':
+        Explore.sorting()
