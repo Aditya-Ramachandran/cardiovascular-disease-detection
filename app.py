@@ -168,7 +168,14 @@ if option == 'Try the visualizations':
             st.subheader('Weight vs systolic BP')
             weight = st.number_input('Enter weight (in kg)')
             ap_hi = st.number_input('Enter Systolic BP')
-            st.pyplot(custom_scatter(weight, ap_hi, df['weight'], df['ap_lo'], 'weight', 'ap_hi', 'Weight (kg)', 'Systolic Blood Pressure'))
+            st.pyplot(custom_scatter(weight, ap_hi, df['weight'], df['ap_hi'], 'weight', 'ap_hi', 'Weight (kg)', 'Systolic Blood Pressure'))
+
+
+        if st.session_state['counter'] == 'Weight vs diastolic BP':
+            st.subheader('Weight vs diastolic BP')
+            weight = st.number_input('Enter weight (in kg)')
+            ap_lo = st.number_input('Enter Diastolic BP')
+            st.pyplot(custom_scatter(weight, ap_lo, df['weight'], df['ap_lo'], 'weight', 'ap_lo', 'Weight (kg)', 'Diastolic Blood Pressure'))
 
 
 if option == 'About':
