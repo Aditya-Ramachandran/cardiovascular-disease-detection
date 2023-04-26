@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from about import About
+from explore import Explore
 
 # st.title('Cardiovascular Disease Detection Using Python !')
 # st.subheader('Major Project')
@@ -49,7 +50,7 @@ def EnsembleModels():
 
 
 st.sidebar.header('Cardiovascular Disease Detection Using Python')
-option = st.sidebar.radio('Choose', ['About', 'Try the model', 'Try the visualizations'])
+option = st.sidebar.radio('Choose', ['About', 'Try the model', 'Try the visualizations', 'Explore the dataset'])
 
 if option == 'Try the model':
     st.title('This is a Work In Progress')
@@ -121,3 +122,7 @@ if option == 'Try the visualizations':
 
 if option == 'About':
     About.load_about()
+
+
+if option == 'Explore the dataset':
+    Explore.filter()
