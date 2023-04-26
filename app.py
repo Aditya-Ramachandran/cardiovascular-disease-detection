@@ -135,6 +135,7 @@ if option == 'Explore the dataset':
         st.write('* For simple filter : select column name ->  the operator -> specify the value')
         st.write('* For multiple filters : Select the columns -> select operator for each column -> specfy the value for each column')
         st.write('* Press enter to get the result')
+        st.write('* Filtered dataset can be downloaded from the link')
         st.markdown("<hr>", unsafe_allow_html=True)
 
         filter_option = st.radio('Select a filter type', ['Single Filter', 'Multiple Filters'], key='filter_op')

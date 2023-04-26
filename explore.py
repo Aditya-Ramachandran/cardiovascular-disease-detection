@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import base64
 
 df = pd.read_csv('Dataset/cardio_train_cleaned_1.csv')
 df['age'] = round(df['age'])
@@ -24,6 +25,7 @@ class Explore():
             op = st.selectbox(f"Select operator for {col}", options=["<", "<=", "==", ">=", ">"])
             val = st.number_input(f"Enter value for {col}", min_value=df[col].min(), max_value=df[col].max())
             filters.append((col, op, val))
+
         
         self.__do_multiple_filters(df, filters)
         
@@ -36,9 +38,11 @@ class Explore():
 
         if filters:
             filtered_df = apply_filters(df, filters)
-            st.write(filtered_df)
+            st.dataframe(filtered_df)
         else:
-            st.write(df)
+            st.dataframe(df)
+
+        download_csv(df)
 
 
     def __do_filter(self,dataframe_name, col_name, operator, number):
@@ -65,11 +69,22 @@ class Explore():
         with col3:
             st.metric('Total elements :', filtered_df.size)
         st.dataframe(filtered_df)
-    
+
+        
+        download_csv(filtered_df)
+            
 
     def sorting():
         st.write('Sorting')
-       
+
+
+
+def download_csv(df):
+    csv = df.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()
+    href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">Download as .csv file</a>'
+    st.markdown(href, unsafe_allow_html=True)
+
 
 
 # explore_obj = Explore()
