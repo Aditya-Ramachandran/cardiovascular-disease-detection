@@ -135,7 +135,7 @@ if option == 'Explore the dataset':
             explore_obj.filter()
         
         if st.session_state['filter_op'] == 'Multiple Filters':
-            st.write('Multiple')
+            explore_obj.multiple_filters()
 
 
     if st.session_state['explore'] == 'Sorting':
