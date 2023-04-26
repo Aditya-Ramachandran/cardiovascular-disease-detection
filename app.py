@@ -129,12 +129,22 @@ explore_obj = Explore()
 if option == 'Explore the dataset':
     explore_option = st.sidebar.selectbox('Choose', ['Filtering', 'Sorting'], key='explore')
     if st.session_state['explore'] == 'Filtering':
-        filter_option = st.radio('Select', ['Single Filter', 'Multiple Filters'], key='filter_op')
+        st.header('Filtering')
+        st.subheader('How to use')
+        st.write('* Select the type of filtering')
+        st.write('* For simple filter : select column name ->  the operator -> specify the value')
+        st.write('* For multiple filters : Select the columns -> select operator for each column -> specfy the value for each column')
+        st.write('* Press enter to get the result')
+        st.markdown("<hr>", unsafe_allow_html=True)
+
+        filter_option = st.radio('Select a filter type', ['Single Filter', 'Multiple Filters'], key='filter_op')
         # st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
         if st.session_state['filter_op'] == 'Single Filter':
+            st.subheader('Single Filter')
             explore_obj.filter()
         
         if st.session_state['filter_op'] == 'Multiple Filters':
+            st.subheader('Multiple Filters')
             explore_obj.multiple_filters()
 
 

@@ -10,6 +10,7 @@ df['age'] = round(df['age'])
 class Explore():
 
     def filter(self):
+
         explore_col =  st.selectbox('Select Column', [cols for cols in df.columns][1:])
         explore_operator = st.selectbox('Select Operator',['>', '>=','<','<=','=='])
         explore_num = st.number_input('Enter the value based on which you want to filter')
