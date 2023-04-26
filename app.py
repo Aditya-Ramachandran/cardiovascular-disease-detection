@@ -157,6 +157,12 @@ if option == 'Try the visualizations':
             st.pyplot(custom_scatter(height, ap_hi, df['height'], df['ap_hi'], 'height', 'ap_hi', 'Height (cm)', 'Systolic Blood Pressure'))
 
 
+        if st.session_state['counter'] == 'Height vs diastolic BP':
+            st.subheader('Height vs diastolic BP')
+            height = st.number_input('Enter height (in cms)')
+            ap_lo = st.number_input('Enter Diastolic BP')
+            st.pyplot(custom_scatter(height, ap_lo, df['height'], df['ap_lo'], 'height', 'ap_lo', 'Height (cm)', 'Diastolic Blood Pressure'))
+
 
 
 if option == 'About':
