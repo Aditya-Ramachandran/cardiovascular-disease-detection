@@ -129,6 +129,14 @@ explore_obj = Explore()
 if option == 'Explore the dataset':
     explore_option = st.sidebar.selectbox('Choose', ['Filtering', 'Sorting'], key='explore')
     if st.session_state['explore'] == 'Filtering':
-        explore_obj.filter()
+        filter_option = st.radio('Select', ['Single Filter', 'Multiple Filters'], key='filter_op')
+        # st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+        if st.session_state['filter_op'] == 'Single Filter':
+            explore_obj.filter()
+        
+        if st.session_state['filter_op'] == 'Multiple Filters':
+            st.write('Multiple')
+
+
     if st.session_state['explore'] == 'Sorting':
         Explore.sorting()
