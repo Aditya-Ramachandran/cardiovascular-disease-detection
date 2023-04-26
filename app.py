@@ -150,7 +150,14 @@ if option == 'Try the visualizations':
         #     height = st.number_input('Enter your height')
         #     st.pyplot(custom_scatter(age, height, df['age'], df['height'], 'age', 'height', 'Age (years)', 'Height (cm)'))
 
-        
+        if st.session_state['counter'] == 'Height vs systolic BP':
+            st.subheader('Height vs systolic BP')
+            height = st.number_input('Enter height (in cms)')
+            ap_hi = st.number_input('Enter Systolic BP')
+            st.pyplot(custom_scatter(height, ap_hi, df['height'], df['ap_hi'], 'height', 'ap_hi', 'Height (cm)', 'Systolic Blood Pressure'))
+
+
+
 
 if option == 'About':
     load_about()
