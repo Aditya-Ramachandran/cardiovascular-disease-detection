@@ -18,14 +18,20 @@ from keras.optimizers import Nadam
 from keras.models import model_from_json
 
 from datetime import date
+import datetime
+current_year = datetime.date.today().year
+current_month = datetime.date.today().month
+current_day = datetime.date.today().day
+
 
 
 df = pd.read_csv('Dataset/cardio_train_cleaned_1.csv')
+# df = pd.read_csv('Dataset/cardio_train.csv')
 
 class NeuralNetwork:
 
     def hello(self):
-        f_date = st.date_input('Enter your Date Of Birth')
+        f_date = st.date_input('Enter your Date Of Birth', min_value=datetime.date(1940, 1, 1), max_value= datetime.date(current_year, current_month, current_day))
         l_date = date.today()
         delta = l_date - f_date
         agedays=delta.days
@@ -56,7 +62,7 @@ class NeuralNetwork:
         singledf=pd.DataFrame(single)
         final=singledf.transpose()
 
-        # st.dataframe(final)
+        st.dataframe(final)
 
         # loading the model
 
