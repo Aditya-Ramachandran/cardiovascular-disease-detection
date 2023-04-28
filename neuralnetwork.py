@@ -17,6 +17,9 @@ from keras.optimizers import Nadam
 
 from datetime import date
 
+
+df = pd.read_csv('Dataset/cardio_train_cleaned_1.csv')
+
 class NeuralNetwork:
 
     def hello(self):
@@ -24,6 +27,7 @@ class NeuralNetwork:
         l_date = date.today()
         delta = l_date - f_date
         agedays=delta.days
+
         gender = st.number_input('Enter gender: 0 for woman; 1 for man', min_value=0, max_value=1)
         height = st.number_input('Enter your height (in cms)', min_value=0, max_value=300)
         weight = st.number_input('Enter your weight (in kgs)', min_value=0, max_value=500)
@@ -34,6 +38,29 @@ class NeuralNetwork:
         smoke = st.number_input('Do you smoke? 1 if you smoke, 0 if not', min_value=0, max_value=1)
         alco = st.number_input('Do you drink alcohol? 1 if you smoke, 0 if not', min_value=0, max_value=1)
         active = st.number_input('Do you exercise regularly? 1 if you do, 0 if not', min_value=0, max_value=1)
+
+
+        # Converting all of these inputs into proper scale to feed into the NN
+
+        agedayscale=(agedays-df["age"].min())/(df["age"].max()-df["age"].min())
+        heightscale=(height-df["height"].min())/(df["height"].max()-df["height"].min())
+        weightscale=(weight-df["weight"].min())/(df["weight"].max()-df["weight"].min())
+        sbpscale=(systolicbloodpressure-df["ap_hi"].min())/(df["ap_hi"].max()-df["ap_hi"].min())
+        dbpscale=(diastolicbloodpressure-df["ap_lo"].min())/(df["ap_lo"].max()-df["ap_lo"].min())
+        cholesterolscale=(cholesterol-df["cholesterol"].min())/(df["cholesterol"].max()-df["cholesterol"].min())
+        glucscale=(gluc-df["gluc"].min())/(df["gluc"].max()-df["gluc"].min())
+
+        single=np.array([agedayscale, gender, heightscale, weightscale, sbpscale, dbpscale, cholesterolscale, glucscale, smoke, alco, active ])
+        singledf=pd.DataFrame(single)
+        final=singledf.transpose()
+        
+        st.dataframe(final)
+
+
+
+
+
+
         # st.write(height) 
 
         
