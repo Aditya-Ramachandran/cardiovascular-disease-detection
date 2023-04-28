@@ -58,8 +58,8 @@ st.sidebar.header('Cardiovascular Disease Detection Using Python')
 option = st.sidebar.radio('Choose', ['About', 'Try the model', 'Try the visualizations', 'Explore the dataset'])
 
 if option == 'Try the model':
-    st.title('This is a Work In Progress')
-    st.markdown('Check [this](https://github.com/Aditya-Ramachandran/cardiovascular-disease-detection) GitHub repository for updates')
+    # st.title('This is a Work In Progress')
+    # st.markdown('Check [this](https://github.com/Aditya-Ramachandran/cardiovascular-disease-detection) GitHub repository for updates')
     model_option = st.sidebar.selectbox('Choose Model', ['Ensemble Models', 'Neural Network'], key='model')
     # st.session_state
     if st.session_state['model'] == 'Neural Network':
