@@ -25,7 +25,7 @@ df = pd.read_csv('Dataset/cardio_train_cleaned_1.csv')
 class NeuralNetwork:
 
     def hello(self):
-        f_date = st.date_input('Enter your DOB')
+        f_date = st.date_input('Enter your Date Of Birth')
         l_date = date.today()
         delta = l_date - f_date
         agedays=delta.days
@@ -55,6 +55,7 @@ class NeuralNetwork:
         single=np.array([agedayscale, gender, heightscale, weightscale, sbpscale, dbpscale, cholesterolscale, glucscale, smoke, alco, active ])
         singledf=pd.DataFrame(single)
         final=singledf.transpose()
+
         # st.dataframe(final)
 
         # loading the model
@@ -66,9 +67,23 @@ class NeuralNetwork:
         # loading thr weights
         loaded_model.load_weights("Predictions/weights_final.hdf5")
 
+        btn = st.button("Find out if you are healthy!")
 
+        if btn:
+        # making predictions
+            prediction=loaded_model.predict(final)
 
-
+            
+            
+            if prediction[0,0]>=0.5:
+                st.write("The probability of having or to have a Cardiovascular Disease is: "+ str(round(prediction[0,0]*100,2)) + "%")
+                st.write("You must visit a doctor to check it :(")
+            elif prediction[0,0]<0.5 and prediction[0,0]>=0.3:
+                st.write("The probability of having or to have a Cardiovascular Disease is: "+ str(round(prediction[0,0]*100,2)) + "%")
+                st.write("Probably you are healthy :/ ")
+            else:
+                st.write("The probability of having or to have a Cardiovascular Disease is: "+ str(round(prediction[0,0]*100,2)) + "%")
+                st.write("You are healthy :) ")
 
 
         # st.write(height) 
