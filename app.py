@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from about import About
 from explore import Explore
+from neuralnetwork import NeuralNetwork
 
 st.set_page_config(page_title="Cardiovascular Disease Detection in Python")
 # st.title('Cardiovascular Disease Detection Using Python !')
@@ -41,9 +42,12 @@ def custom_scatter(x,y, xx, yy, label1, label2, x_axis,y_axis):
 
 ########################################################################################################
 
+nn_obj = NeuralNetwork()
+
 # function for model_option
 def NeuralNetwork():
-    st.write('NN')
+    nn_obj.hello()
+    
 
 def EnsembleModels():
     st.write('Ensemble Models')
