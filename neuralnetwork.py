@@ -15,6 +15,8 @@ from keras.layers import Dropout
 from keras.constraints import maxnorm
 from keras.optimizers import Nadam
 
+from keras.models import model_from_json
+
 from datetime import date
 
 
@@ -53,8 +55,16 @@ class NeuralNetwork:
         single=np.array([agedayscale, gender, heightscale, weightscale, sbpscale, dbpscale, cholesterolscale, glucscale, smoke, alco, active ])
         singledf=pd.DataFrame(single)
         final=singledf.transpose()
-        
-        st.dataframe(final)
+        # st.dataframe(final)
+
+        # loading the model
+
+        with open('Predictions/model.json', 'r') as json_file:
+            loaded_model_json = json_file.read()
+        loaded_model = model_from_json(loaded_model_json)
+
+        # loading thr weights
+        loaded_model.load_weights("Predictions/weights_final.hdf5")
 
 
 
