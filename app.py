@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from about import About
 from explore import Explore
-from neuralnetwork import NeuralNetwork
+# from neuralnetwork import NeuralNetwork
 
 st.set_page_config(page_title="Cardiovascular Disease Detection in Python")
 # st.title('Cardiovascular Disease Detection Using Python !')
@@ -42,11 +42,11 @@ def custom_scatter(x,y, xx, yy, label1, label2, x_axis,y_axis):
 
 ########################################################################################################
 
-nn_obj = NeuralNetwork()
+# nn_obj = NeuralNetwork()
 
 # function for model_option
-def NeuralNetwork():
-    nn_obj.hello()
+# def NeuralNetwork():
+#     nn_obj.hello()
     
 
 def EnsembleModels():
@@ -62,8 +62,8 @@ if option == 'Try the model':
     # st.markdown('Check [this](https://github.com/Aditya-Ramachandran/cardiovascular-disease-detection) GitHub repository for updates')
     model_option = st.sidebar.selectbox('Choose Model', ['Ensemble Models', 'Neural Network'], key='model')
     # st.session_state
-    if st.session_state['model'] == 'Neural Network':
-        NeuralNetwork()
+    # if st.session_state['model'] == 'Neural Network':
+    #     NeuralNetwork()
     if st.session_state['model'] == 'Ensemble Models':
         EnsembleModels()
 
