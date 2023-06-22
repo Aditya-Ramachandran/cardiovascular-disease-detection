@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 from about import About
 from explore import Explore
 # from neuralnetwork import NeuralNetwork
+from ensemblemodels import EnsembleModels
+
 
 st.set_page_config(page_title="Cardiovascular Disease Detection in Python")
 # st.title('Cardiovascular Disease Detection Using Python !')
@@ -18,7 +20,7 @@ df = pd.read_csv('Dataset/cardio_train_cleaned_1.csv')
 ########################################################################################################
 
 # function for custom scatter plots
-def custom_scatter(x,y, xx, yy, label1, label2, x_axis,y_axis):
+def custom_scatter(dataframe,x,y, xx, yy, label1, label2, x_axis,y_axis):
 #     xx = random.sample(range(0, 100), 50)
 #     yy = random.sample(range(0, 100), 50)
     plt.scatter(xx, yy, alpha=0.1, color='orange')
@@ -30,6 +32,8 @@ def custom_scatter(x,y, xx, yy, label1, label2, x_axis,y_axis):
     plt.axhline(df[label2].mean(), linestyle='dotted', alpha=0.5)
 #     plt.text(df['age'].mean()+5,df['weight'].mean()+5,'Average',rotation=90, alpha=0.5)
     plt.axvline(df[label1].mean(), linestyle='dotted', alpha=0.5)
+
+
 
 
     # # with open("flower.png", "rb") as file:
@@ -47,10 +51,9 @@ def custom_scatter(x,y, xx, yy, label1, label2, x_axis,y_axis):
 # function for model_option
 # def NeuralNetwork():
 #     nn_obj.hello()
-    
 
-def EnsembleModels():
-    st.write('Ensemble Models')
+
+# def EnsembleModels():
 
 
 
@@ -65,7 +68,9 @@ if option == 'Try the model':
     # if st.session_state['model'] == 'Neural Network':
     #     NeuralNetwork()
     if st.session_state['model'] == 'Ensemble Models':
-        EnsembleModels()
+        ensemble_obj = EnsembleModels()    
+        # ensemble_obj.display()
+        ensemble_obj.predict()
 
 if option == 'Try the visualizations':
         
@@ -83,8 +88,8 @@ if option == 'Try the visualizations':
             st.subheader('Height vs Weight')
             height = st.number_input('Enter Height (in cm)')
             weight = st.number_input('Enter Weight (in kg)')
-            st.pyplot(custom_scatter(height, weight, df['height'], df['weight'], 'height', 'weight', 'Height (cms)', 'Weight (kg)'))
-        
+            st.pyplot(custom_scatter(df, height, weight, df['height'], df['weight'], 'height', 'weight', 'Height (cms)', 'Weight (kg)'))
+            
         if st.session_state['counter'] == 'Systolic BP vs Diastolic BP':
             st.subheader('Systolic BP vs Diastolic BP')
             ap_hi = st.number_input('Enter Systolic BP')
