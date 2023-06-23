@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import pickle
+import time
 from sklearn.preprocessing import MinMaxScaler,StandardScaler
 mms = MinMaxScaler() # Normalization
 ss = StandardScaler() # Standardization
@@ -12,7 +13,7 @@ class EnsembleModels():
 
     def __init__(self):
         self.__sex = st.selectbox('Enter your sex', options=('M', 'F'))
-        self.__age = st.number_input('Enter your age', min_value=1, max_value=110)
+        self.__age = st.number_input('Enter your age', min_value=18, max_value=110)
         self.__pain_type = st.selectbox('Enter your chest pain type', options=('ASY','NAP','ATA','TA'))
         self.__cholesterol = st.number_input('Enter your cholesterol', max_value=400)
         self.__FastingBS = st.selectbox('Enter your fasting blood sugar (0 -> Normal; 1-> High)', options=(0,1))
@@ -67,8 +68,12 @@ class EnsembleModels():
 
         
     def predict(self):
+
         btn = st.button('Predict')
         if btn:
+            with st.spinner('Performing heart disease prediction... Please wait.'):
+                time.sleep(5)
+            st.success('Prediction complete!')
             model_dt = pickle.load(open('Predictions/Models/dt_model.pkl', 'rb'))
             model_knn = pickle.load(open('Predictions/Models/knn_model.pkl', 'rb'))
             model_lr = pickle.load(open('Predictions/Models/lr_model.pkl', 'rb'))
@@ -79,12 +84,12 @@ class EnsembleModels():
             query = df.values
 
             models = {
-            "Decision Tree": model_dt,
-            "K-Nearest Neighbors": model_knn,
-            "Logistic Regression": model_lr,
-            "Random Forest": model_rf,
-            "Support Vector Machine": model_svm
-        }
+                "Decision Tree": model_dt,
+                "K-Nearest Neighbors": model_knn,
+                "Logistic Regression": model_lr,
+                "Random Forest": model_rf,
+                "Support Vector Machine": model_svm
+            }
 
             predictions = []
 
@@ -92,9 +97,59 @@ class EnsembleModels():
                 prediction = model.predict(query)
                 predictions.append(prediction)
                 result = "you DO NOT have heart disease" if prediction == 0 else "you HAVE a chance of heart disease"
-                st.write(f"According to {model_name}: {result}\n")
+                # st.write(f"According to {model_name}: {result}\n")
 
             flat_predictions = np.ravel(predictions)
             majority_vote = np.bincount(flat_predictions).argmax()
             final_result = "you DO NOT have heart disease" if majority_vote == 0 else "you HAVE a chance of heart disease"
-            st.write(f"\nFinal Result (Majority Vote): {final_result}")
+
+            # Display the results in a table
+            styled_table = '''
+                <style>
+                .styled-table {
+                    border-collapse: collapse;
+                    width: 100%;
+                    margin-bottom: 20px;
+                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+                }
+                
+                .styled-table th, .styled-table td {
+                    border: 1px solid #dddddd;
+                    padding: 8px;
+                    color: black;  /* Set the font color to black */
+                }
+                
+                .styled-table th {
+                    background-color: #f2f2f2;
+                }
+                
+                .styled-table tr:nth-child(even) {
+                    background-color: #f9f9f9;
+                }
+                
+                .styled-table tr:nth-child(odd) {
+                    background-color: #ffffff;
+                }
+                </style>
+            '''
+
+            styled_table += '<table class="styled-table"><tr><th>Model</th><th>Prediction</th></tr>'
+            for model_name, prediction in zip(models.keys(), predictions):
+                result = "you DO NOT have heart disease" if prediction == 0 else "you HAVE a chance of heart disease"
+                styled_table += f'<tr><td>{model_name}</td><td>{result}</td></tr>'
+            styled_table += '</table>'
+
+            color = "green" if majority_vote == 0 else "red"
+
+            # Combine the styled table and final result
+            styled_output = styled_table + f"<h4>Final Result (Majority Vote): <span style='color:{color}'>{final_result}</span></h4>"
+            st.markdown(styled_output, unsafe_allow_html=True)
+
+
+
+
+
+
+
+
+
