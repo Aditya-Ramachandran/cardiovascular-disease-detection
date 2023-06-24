@@ -20,7 +20,7 @@ df = pd.read_csv('Dataset/cardio_train_cleaned_1.csv')
 ########################################################################################################
 
 # function for custom scatter plots
-def custom_scatter(dataframe,x,y, xx, yy, label1, label2, x_axis,y_axis):
+def custom_scatter(x,y, xx, yy, label1, label2, x_axis,y_axis):
 #     xx = random.sample(range(0, 100), 50)
 #     yy = random.sample(range(0, 100), 50)
     plt.scatter(xx, yy, alpha=0.1, color='orange')
@@ -61,13 +61,15 @@ st.sidebar.header('Cardiovascular Disease Detection Using Python')
 option = st.sidebar.radio('Choose', ['About', 'Try the model', 'Try the visualizations', 'Explore the dataset'])
 
 if option == 'Try the model':
+        st.subheader("Heart Disease Prediction")
+
     # st.title('This is a Work In Progress')
     # st.markdown('Check [this](https://github.com/Aditya-Ramachandran/cardiovascular-disease-detection) GitHub repository for updates')
-    model_option = st.sidebar.selectbox('Choose Model', ['Ensemble Models', 'Neural Network'], key='model')
-    # st.session_state
-    # if st.session_state['model'] == 'Neural Network':
-    #     NeuralNetwork()
-    if st.session_state['model'] == 'Ensemble Models':
+    # model_option = st.sidebar.selectbox('Choose Model', ['Ensemble Models', 'Neural Network'], key='model')
+    # # st.session_state
+    # # if st.session_state['model'] == 'Neural Network':
+    # #     NeuralNetwork()
+    # if st.session_state['model'] == 'Ensemble Models':
         ensemble_obj = EnsembleModels()    
         # ensemble_obj.display()
         ensemble_obj.predict()
