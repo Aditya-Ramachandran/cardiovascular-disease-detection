@@ -90,7 +90,7 @@ if option == 'Try the visualizations':
             st.subheader('Height vs Weight')
             height = st.number_input('Enter Height (in cm)')
             weight = st.number_input('Enter Weight (in kg)')
-            st.pyplot(custom_scatter(df, height, weight, df['height'], df['weight'], 'height', 'weight', 'Height (cms)', 'Weight (kg)'))
+            st.pyplot(custom_scatter(height, weight, df['height'], df['weight'], 'height', 'weight', 'Height (cms)', 'Weight (kg)'))
             
         if st.session_state['counter'] == 'Systolic BP vs Diastolic BP':
             st.subheader('Systolic BP vs Diastolic BP')
