@@ -76,15 +76,20 @@ if option == 'Try the model':
 
 if option == 'Try the visualizations':
         
-        st.title('Visualizations')
-        st.subheader('How to use')
-        st.write('* Select the type of visualization from the sidebar')
-        st.write('* Enter the values in the given input area (Press Enter to save)')
-        
+        st.title('Visualizations')        
         st.markdown("<hr>", unsafe_allow_html=True)
 
         # https://youtu.be/92jUAXBmZyU -> Session State tut
         option_plot = st.sidebar.selectbox('Choose Visualization', ['Height vs Weight', 'Systolic BP vs Diastolic BP', 'Height vs systolic BP', 'Height vs diastolic BP', 'Weight vs systolic BP', 'Weight vs diastolic BP'],key="counter")
+
+        btn = st.sidebar.button('View Help',on_click=None)
+        if btn == True:
+            st.subheader('How to use')
+            st.write('* Select the type of visualization from the sidebar')
+            st.write('* Enter the values in the given input area (Press Enter to save)')
+        
+            btn = st.sidebar.button('Hide Help',on_click=None)
+            st.markdown('---')
         # st.session_state
         if st.session_state['counter'] == 'Height vs Weight':
             st.subheader('Height vs Weight')
