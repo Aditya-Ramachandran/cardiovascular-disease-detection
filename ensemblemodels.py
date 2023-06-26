@@ -171,12 +171,16 @@ class EnsembleModels():
         pdf.set_font('Arial', size=12)
         pdf.multi_cell(0, 10, text)
         pdf.output(output_pdf_path)
+        st.success('Both PDF and text version of the report downloaded!')
 
 
     def predict(self):
 
         btn = st.button('Predict',key='predict')
         st.markdown('<hr>', unsafe_allow_html=True)
+
+        if "button1" not in st.session_state:
+            st.session_state["button1"] = False
 
         if btn:
             with st.spinner('Performing heart disease prediction... Please wait.'):
@@ -249,16 +253,22 @@ class EnsembleModels():
 
             color = "green" if majority_vote == 0 else "red"
 
+            
+
             # Combine the styled table and final result
             styled_output = styled_table + f"<h4>Final Result (Majority Vote): <span style='color:{color}'>{final_result}</span></h4>"
             st.markdown(styled_output, unsafe_allow_html=True)
             st.markdown('<hr>', unsafe_allow_html=True)
+
+
             st.subheader('Download your report')
             st.write('-  You can download the report by clicking on the **Download Report** link below')
             st.write('- Please make sure to click the link within 30 seconds to initiate the download.')
             st.write('- This time limit is set to optimize resource usage.')
             st.write('-  You don\'t need to change the name of the file.')
             st.write('- If you fail to click the link within 30 seconds, you will need to perform the prediction again to generate and download the report.')
+
+
             try: 
                 self.__generate_report()
             except:
